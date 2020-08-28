@@ -35,30 +35,7 @@ public class SplashScreen {
                     mSplashDialog = new Dialog(activity, themeResId);
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
-                    final LottieAnimationView animationView = mSplashDialog.findViewById(R.id.animation_view);
-                    animationView.addAnimatorListener(new Animator.AnimatorListener() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
-
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            animationView.removeAllAnimatorListeners();
-                            animationView.setAnimation(R.raw.splash_animation_loop);
-                            animationView.setRepeatMode(LottieDrawable.RESTART);
-                        }
-
-                        @Override
-                        public void onAnimationCancel(Animator animation) {
-
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animator animation) {
-
-                        }
-                    });
+                    setAnimation();
 
                     if (!mSplashDialog.isShowing()) {
                         mSplashDialog.show();
@@ -114,6 +91,39 @@ public class SplashScreen {
                     }
                     mSplashDialog = null;
                 }
+            }
+        });
+    }
+
+    private void setAnimation() {
+        final LottieAnimationView animationView = mSplashDialog.findViewById(R.id.animation_view);
+        LottieCompositionFactory.fromRawRes(getActivity(), 1).addListener(new LottieListener<LottieComposition>() {
+            @Override
+            public void onResult(LottieComposition result) {
+                lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        lottieAnimationView.setComposition(result);
+                        lottieAnimationView.setRepeatMode(LottieDrawable.RESTART);
+                        lottieAnimationView.setRepeatCount(LottieDrawable.INFINITE);
+                        lottieAnimationView.playAnimation();
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
             }
         });
     }

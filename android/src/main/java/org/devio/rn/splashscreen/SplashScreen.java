@@ -35,7 +35,7 @@ public class SplashScreen {
                     mSplashDialog = new Dialog(activity, themeResId);
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
-                    LottieAnimationView animationView = mSplashDialog.findViewById(R.id.animation_view);
+                    final LottieAnimationView animationView = mSplashDialog.findViewById(R.id.animation_view);
                     animationView.addAnimatorListener(new Animator.AnimatorListener() {
                         @Override
                         public void onAnimationStart(Animator animation) {

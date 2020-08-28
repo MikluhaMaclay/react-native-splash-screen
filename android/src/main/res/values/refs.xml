@@ -6,4 +6,7 @@
     <item type="raw" name="splash_animation_loop">
         @raw/splash_animation_loop
     </item>
+    <item type="id" name="animation_view">
+        @id/animation_view
+    </item>
 </resources>

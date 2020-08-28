@@ -8,7 +8,10 @@ import java.lang.ref.WeakReference;
 
 import android.animation.Animator;
 import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieComposition;
+import com.airbnb.lottie.LottieCompositionFactory;
 import com.airbnb.lottie.LottieDrawable;
+import com.airbnb.lottie.LottieListener;
 
 /**
  * SplashScreen
@@ -95,12 +98,12 @@ public class SplashScreen {
         });
     }
 
-    private void setAnimation() {
+    private static void setAnimation() {
         final LottieAnimationView animationView = mSplashDialog.findViewById(R.id.animation_view);
-        LottieCompositionFactory.fromRawRes(getActivity(), 1).addListener(new LottieListener<LottieComposition>() {
+        LottieCompositionFactory.fromRawRes(mActivity.get(), R.raw.splash_animation_loop).addListener(new LottieListener<LottieComposition>() {
             @Override
-            public void onResult(LottieComposition result) {
-                lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+            public void onResult(final LottieComposition result) {
+                animationView.addAnimatorListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
 
@@ -108,10 +111,10 @@ public class SplashScreen {
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        lottieAnimationView.setComposition(result);
-                        lottieAnimationView.setRepeatMode(LottieDrawable.RESTART);
-                        lottieAnimationView.setRepeatCount(LottieDrawable.INFINITE);
-                        lottieAnimationView.playAnimation();
+                        animationView.setComposition(result);
+                        animationView.setRepeatMode(LottieDrawable.RESTART);
+                        animationView.setRepeatCount(LottieDrawable.INFINITE);
+                        animationView.playAnimation();
                     }
 
                     @Override

@@ -6,6 +6,10 @@ import android.os.Build;
 
 import java.lang.ref.WeakReference;
 
+import android.animation.Animator;
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieDrawable;
+
 /**
  * SplashScreen
  * 启动屏
@@ -31,6 +35,31 @@ public class SplashScreen {
                     mSplashDialog = new Dialog(activity, themeResId);
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
+                    LottieAnimationView animationView = mSplashDialog.findViewById(R.id.animation_view);
+                    LottieAnimationView lottieAnimationView = new LottieAnimationView();
+                    lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            lottieAnimationView.removeAllAnimatorListeners();
+                            lottieAnimationView.setAnimation(R.raw.splash_animation_loop);
+                            lottieAnimationView.setRepeatMode(LottieDrawable.RESTART);
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {
+
+                        }
+                    });
 
                     if (!mSplashDialog.isShowing()) {
                         mSplashDialog.show();

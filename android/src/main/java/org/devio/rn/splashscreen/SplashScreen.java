@@ -36,8 +36,7 @@ public class SplashScreen {
                     mSplashDialog.setContentView(R.layout.launch_screen);
                     mSplashDialog.setCancelable(false);
                     LottieAnimationView animationView = mSplashDialog.findViewById(R.id.animation_view);
-                    LottieAnimationView lottieAnimationView = new LottieAnimationView();
-                    lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+                    animationView.addAnimatorListener(new Animator.AnimatorListener() {
                         @Override
                         public void onAnimationStart(Animator animation) {
 
@@ -45,9 +44,9 @@ public class SplashScreen {
 
                         @Override
                         public void onAnimationEnd(Animator animation) {
-                            lottieAnimationView.removeAllAnimatorListeners();
-                            lottieAnimationView.setAnimation(R.raw.splash_animation_loop);
-                            lottieAnimationView.setRepeatMode(LottieDrawable.RESTART);
+                            animationView.removeAllAnimatorListeners();
+                            animationView.setAnimation(R.raw.splash_animation_loop);
+                            animationView.setRepeatMode(LottieDrawable.RESTART);
                         }
 
                         @Override

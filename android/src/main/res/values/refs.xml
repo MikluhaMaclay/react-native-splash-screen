@@ -3,4 +3,7 @@
     <item type="layout" name="launch_screen">
         @layout/launch_screen
     </item>
+    <item type="raw" name="splash_animation_loop">
+        @raw/splash_animation_loop
+    </item>
 </resources>
